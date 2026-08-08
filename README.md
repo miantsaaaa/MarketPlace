@@ -124,36 +124,6 @@ Initialisation technique validée.
 
 ---
 
-# Réalisé
-
-## Initialisation du projet
-
-- Structure globale du projet créée.
-- Repository Git initialisé.
-- Backend Spring Boot généré avec Maven.
-- Frontend React créé avec Vite.
-- Configuration React + TypeScript + ESLint validée.
-
----
-
-## Backend
-
-Réalisé :
-
-- Projet Spring Boot fonctionnel.
-- Configuration Maven terminée.
-- Ajout de Spring Data JPA.
-- Ajout du driver PostgreSQL.
-- Connexion Spring Boot ↔ PostgreSQL validée.
-- Démarrage du serveur backend validé.
-
-Test effectué :
-
-Tomcat started on port 8080
-Started MarketplaceBackendApplication
-
----
-
 ## Base de données
 
 Réalisé :
@@ -183,16 +153,6 @@ Réalisé :
 
 ---
 
-## UML
-
-Réalisé :
-
-- Cas d'utilisation documentés.
-- Diagramme global des cas d'utilisation réalisé.
-- Diagrammes UML par acteur réalisés avec PlantUML.
-
----
-
 # Décisions validées
 
 Les décisions suivantes ont été validées :
@@ -203,23 +163,8 @@ Les décisions suivantes ont été validées :
 - Frontend React + TypeScript.
 - Backend Spring Boot.
 - Base PostgreSQL.
-- Documentation UML avec PlantUML.
 
 ---
-
-# En attente
-
-## Backend
-
-Responsabilité du membre chargé du backend :
-
-- Définition de l'architecture interne.
-- Création des packages métier.
-- Création des entités JPA.
-- Création des repositories.
-- Création des services.
-- Création des contrôleurs REST.
-- Gestion de la sécurité.
 
 ## Projet général
 
@@ -231,31 +176,6 @@ En attente :
 - Architecture technique détaillée.
 - Développement des fonctionnalités métier.
 - Connexion frontend ↔ backend.
-
----
-
-# Organisation Git
-
-Le projet utilise Git pour le travail collaboratif.
-
-Structure prévue :
-
-main
-│
-└── develop
-│
-├── feature/frontend
-│
-├── feature/backend
-│
-└── feature/database
-
-Les modifications importantes doivent suivre le processus :
-
-1. Décider la modification.
-2. Documenter la décision si nécessaire.
-3. Valider avec l'équipe.
-4. Développer.
 
 ---
 
