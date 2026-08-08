@@ -1,0 +1,142 @@
+@startuml
+title Diagrammes des cycles métier - Marketplace
+
+skinparam shadowing false
+skinparam state {
+    BackgroundColor White
+    BorderColor Black
+    FontSize 12
+}
+
+skinparam ArrowColor Black
+
+
+' =====================================================
+' 1 - CYCLE DE VIE D'UNE COMMANDE
+' =====================================================
+
+state "Cycle de vie d'une commande" as Commande {
+
+[*] --> Creee : Validation du panier
+
+Creee --> "En attente de paiement" : Commande créée\nCalcul montant total
+
+"En attente de paiement" --> Payee : Paiement validé
+
+Payee --> "En préparation" : Notification vendeurs\nPréparation produits
+
+"En préparation" --> Expediee : Produits préparés\nRegroupement logistique
+
+Expediee --> "En livraison" : Affectation\nUtilisateur rôle Livreur
+
+"En livraison" --> Livree : Réception confirmée\npar acheteur
+
+Livree --> Terminee : Clôture processus commercial
+
+
+Creee --> Annulee : Annulation autorisée
+
+"En attente de paiement" --> Annulee : Paiement échoué\nou annulation
+
+Payee --> Annulee : Cas exceptionnel
+
+}
+
+
+newpage
+
+
+' =====================================================
+' 2 - CYCLE DE VIE D'UNE LIVRAISON
+' =====================================================
+
+state "Cycle de vie d'une livraison" as Livraison {
+
+[*] --> LivraisonCreee : Commande prête
+
+LivraisonCreee : Créée
+
+LivraisonCreee --> "En attente d'affectation" : Création livraison
+
+"En attente d'affectation" --> Affectee : Affectation utilisateur\n(rôle Livreur)
+
+Affectee --> "En récupération" : Livreur récupère la commande
+
+"En récupération" --> "En livraison" : Transport vers acheteur
+
+"En livraison" --> Livree : Confirmation réception
+
+
+"En livraison" --> Echec : Problème livraison
+
+Echec --> "Nouvelle tentative" : Réorganisation livraison
+
+"Nouvelle tentative" --> Affectee
+
+Echec --> Annulee : Décision métier
+
+}
+
+
+newpage
+
+
+' =====================================================
+' 3 - CYCLE DE VIE D'UN PAIEMENT
+' =====================================================
+
+state "Cycle de vie d'un paiement" as Paiement {
+
+
+[*] --> PaiementCree : Création commande
+
+
+PaiementCree --> "En attente" : Demande paiement
+
+
+"En attente" --> Accepte : Paiement confirmé
+
+
+"En attente" --> Refuse : Paiement échoué
+
+
+Accepte --> Rembourse : Demande remboursement
+
+
+Refuse --> [*]
+
+Rembourse --> [*]
+
+
+}
+
+
+newpage
+
+
+' =====================================================
+' 4 - CYCLE DE TRAITEMENT D'UN TICKET SUPPORT
+' =====================================================
+
+state "Cycle de traitement d'un ticket support" as Support {
+
+
+[*] --> Ouvert : Création ticket
+
+
+Ouvert --> "Pris en charge" : Utilisateur rôle Support\nattribué
+
+
+"Pris en charge" --> "En traitement" : Analyse du problème
+
+
+"En traitement" --> Resolu : Solution apportée
+
+
+Resolu --> Ferme : Validation fermeture
+
+
+}
+
+
+@enduml

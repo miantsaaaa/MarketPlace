@@ -1,0 +1,136 @@
+@startuml
+title Diagramme global des cas d'utilisation - Marketplace
+
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+
+' =====================
+' Acteurs
+' =====================
+
+actor "Acheteur" as Acheteur
+actor "Vendeur" as Vendeur
+actor "Livreur" as Livreur
+actor "Support" as Support
+actor "Administrateur" as Admin
+
+
+rectangle "Marketplace" {
+
+
+    package "Gestion des comptes" {
+
+        usecase "Créer un compte" as UC01
+        usecase "Se connecter" as UC02
+        usecase "Gérer son profil" as UC03
+    }
+
+
+    package "Catalogue et achats" {
+
+        usecase "Rechercher des produits" as UC04
+        usecase "Consulter les produits" as UC05
+        usecase "Gérer le panier" as UC06
+        usecase "Passer une commande" as UC07
+        usecase "Suivre ses commandes" as UC08
+        usecase "Évaluer un produit" as UC09
+    }
+
+
+    package "Gestion vendeur" {
+
+        usecase "Gérer une boutique" as UC10
+        usecase "Gérer les produits" as UC11
+        usecase "Gérer le stock" as UC12
+        usecase "Traiter les commandes" as UC13
+        usecase "Consulter les ventes" as UC14
+    }
+
+
+    package "Livraison" {
+
+        usecase "Gérer les missions\nde livraison" as UC15
+        usecase "Suivre une livraison" as UC16
+        usecase "Confirmer une livraison" as UC17
+    }
+
+
+    package "Assistance" {
+
+        usecase "Gérer les demandes\nsupport" as UC18
+        usecase "Traiter les réclamations" as UC19
+    }
+
+
+    package "Administration" {
+
+        usecase "Gérer les utilisateurs\net les rôles" as UC20
+        usecase "Superviser la marketplace" as UC21
+        usecase "Gérer les paramètres\nsystème" as UC22
+        usecase "Consulter les journaux\nsystème" as UC23
+    }
+
+}
+
+
+' =====================
+' Relations Acheteur
+' =====================
+
+Acheteur --> UC01
+Acheteur --> UC02
+Acheteur --> UC03
+Acheteur --> UC04
+Acheteur --> UC05
+Acheteur --> UC06
+Acheteur --> UC07
+Acheteur --> UC08
+Acheteur --> UC09
+
+
+' =====================
+' Relations Vendeur
+' =====================
+
+Vendeur --> UC02
+Vendeur --> UC10
+Vendeur --> UC11
+Vendeur --> UC12
+Vendeur --> UC13
+Vendeur --> UC14
+
+
+' =====================
+' Relations Livreur
+' =====================
+
+Livreur --> UC02
+Livreur --> UC15
+Livreur --> UC16
+Livreur --> UC17
+
+
+' =====================
+' Relations Support
+' =====================
+
+Support --> UC02
+Support --> UC18
+Support --> UC19
+
+
+' =====================
+' Relations Administrateur
+' =====================
+
+Admin --> UC02
+Admin --> UC20
+Admin --> UC21
+Admin --> UC22
+Admin --> UC23
+
+
+@enduml

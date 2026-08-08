@@ -1,0 +1,63 @@
+@startuml
+title Marketplace - Diagramme de cas d'utilisation Acheteur
+
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam actorStyle awesome
+
+actor "Acheteur" as Acheteur
+
+rectangle "Marketplace - Espace Acheteur" {
+
+    usecase "Créer un compte" as UC_A01
+    usecase "Se connecter" as UC_A02
+    usecase "Gérer son profil" as UC_A03
+
+    usecase "Rechercher un produit" as UC_A04
+    usecase "Consulter un produit" as UC_A05
+    usecase "Consulter un vendeur" as UC_A06
+
+    usecase "Ajouter un produit\nau panier" as UC_A07
+    usecase "Gérer son panier" as UC_A08
+
+    usecase "Passer une commande" as UC_A09
+    usecase "Consulter ses commandes" as UC_A10
+    usecase "Suivre une commande" as UC_A11
+    usecase "Confirmer une réception" as UC_A12
+
+    usecase "Évaluer un produit" as UC_A13
+
+    usecase "Contacter le support" as UC_A14
+}
+
+
+Acheteur --> UC_A01
+Acheteur --> UC_A02
+Acheteur --> UC_A03
+
+Acheteur --> UC_A04
+Acheteur --> UC_A05
+Acheteur --> UC_A06
+
+Acheteur --> UC_A07
+Acheteur --> UC_A08
+
+Acheteur --> UC_A09
+Acheteur --> UC_A10
+Acheteur --> UC_A11
+Acheteur --> UC_A12
+
+Acheteur --> UC_A13
+Acheteur --> UC_A14
+
+
+' Relations fonctionnelles
+
+UC_A07 ..> UC_A05 : <<include>>
+UC_A09 ..> UC_A08 : <<include>>
+
+UC_A11 ..> UC_A10 : <<include>>
+
+@enduml

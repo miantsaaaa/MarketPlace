@@ -1,0 +1,83 @@
+@startuml
+title Diagramme de cas d'utilisation - Administrateur
+
+left to right direction
+
+skinparam packageStyle rectangle
+
+actor Administrateur
+
+rectangle "Marketplace" {
+
+    package "Gestion des utilisateurs" {
+
+        usecase "Accéder à\nl'administration" as UCAD01
+
+        usecase "Consulter les\nutilisateurs" as UCAD02
+
+        usecase "Gérer les rôles\nutilisateurs" as UCAD03
+
+        usecase "Activer ou désactiver\nun compte" as UCAD04
+    }
+
+
+    package "Supervision Marketplace" {
+
+        usecase "Superviser les\nboutiques" as UCAD05
+
+        usecase "Superviser les\nproduits" as UCAD06
+
+        usecase "Gérer les\ncatégories" as UCAD07
+
+        usecase "Superviser les\ncommandes" as UCAD08
+    }
+
+
+    package "Administration système" {
+
+        usecase "Consulter les\nstatistiques globales" as UCAD09
+
+        usecase "Gérer les\nparamètres système" as UCAD10
+
+        usecase "Gérer les\npermissions" as UCAD11
+
+        usecase "Consulter les\njournaux système" as UCAD12
+    }
+}
+
+
+' Association acteur - fonctionnalités
+
+Administrateur --> UCAD01
+
+Administrateur --> UCAD02
+Administrateur --> UCAD03
+Administrateur --> UCAD04
+
+Administrateur --> UCAD05
+Administrateur --> UCAD06
+Administrateur --> UCAD07
+Administrateur --> UCAD08
+
+Administrateur --> UCAD09
+Administrateur --> UCAD10
+Administrateur --> UCAD11
+Administrateur --> UCAD12
+
+
+' Relations fonctionnelles
+
+UCAD03 ..> UCAD02 : <<include>>
+UCAD04 -left..> UCAD02 : <<include>>
+
+UCAD06 -left..> UCAD05 : <<include>>
+
+UCAD08 -up..> UCAD02 : <<include>>
+
+UCAD09 -up..> UCAD08 : <<include>>
+
+UCAD11 -left..> UCAD03 : <<include>>
+
+UCAD12 -left..> UCAD01 : <<include>>
+
+@enduml

@@ -1,0 +1,115 @@
+@startuml
+title Modèle de domaine - Marketplace
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+
+package "Utilisateurs" {
+
+class Utilisateur
+class Role
+class Adresse
+class Notification
+class TicketSupport
+
+Utilisateur "1" -- "1..*" Role : possède >
+Utilisateur "1" -- "0..*" Adresse : possède >
+Utilisateur "1" -- "0..*" Notification : reçoit >
+Utilisateur "1" -- "0..*" TicketSupport : crée >
+
+TicketSupport "0..*" --> "0..1" Utilisateur : traité par >
+}
+
+package "Catalogue" {
+
+class Boutique
+class Produit
+class Categorie
+class Stock
+
+Boutique "1" -- "0..*" Produit : propose >
+Categorie "1" -- "0..*" Produit : classe >
+Produit "1" *-- "1" Stock : possède >
+
+Utilisateur "1" -- "0..1" Boutique : gère >
+}
+
+package "Panier" {
+
+class Panier
+class LignePanier
+
+Utilisateur "1" -- "1" Panier : possède >
+Panier "1" *-- "1..*" LignePanier : contient >
+LignePanier "*" --> "1" Produit : référence >
+
+}
+
+package "Commandes" {
+
+class Commande
+class LigneCommande
+class Paiement
+class Livraison
+
+Utilisateur "1" -- "0..*" Commande : effectue >
+
+Commande "1" *-- "1..*" LigneCommande : contient >
+LigneCommande "*" --> "1" Produit : référence >
+
+Commande "1" -- "1" Paiement : possède >
+Commande "1" -- "1" Livraison : possède >
+
+Livraison "*" --> "1" Adresse : destination >
+
+Livraison "*" --> "0..1" Utilisateur : livreur >
+}
+
+package "Avis" {
+
+class Avis
+
+Utilisateur "1" -- "0..*" Avis : publie >
+Produit "1" -- "0..*" Avis : reçoit >
+
+}
+
+note right of Utilisateur
+Les acteurs métier
+(Acheteur, Vendeur,
+Livreur, Support,
+Administrateur)
+sont représentés
+par les rôles
+associés à
+l'utilisateur.
+end note
+
+note bottom of Boutique
+Seul un utilisateur
+ayant le rôle
+Vendeur peut
+gérer une boutique.
+end note
+
+note bottom of Livraison
+Le livreur n'est
+pas une entité.
+La livraison est
+affectée à un
+Utilisateur
+possédant le rôle
+Livreur.
+end note
+
+note bottom of Commande
+Une commande est
+unique même si
+elle contient des
+produits provenant
+de plusieurs
+boutiques.
+end note
+
+@enduml

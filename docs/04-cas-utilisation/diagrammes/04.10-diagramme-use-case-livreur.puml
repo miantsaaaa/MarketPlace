@@ -1,0 +1,60 @@
+@startuml
+title Marketplace - Diagramme de cas d'utilisation Livreur
+
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam actorStyle awesome
+
+actor "Livreur" as Livreur
+
+rectangle "Marketplace - Espace Livreur" {
+
+    usecase "Activer son rôle livreur" as UC_L01
+
+    usecase "Gérer son profil livreur" as UC_L02
+
+    usecase "Consulter les missions\ndisponibles" as UC_L03
+    usecase "Accepter une mission\nde livraison" as UC_L04
+    usecase "Refuser une mission\nde livraison" as UC_L05
+
+    usecase "Consulter une livraison\nattribuée" as UC_L06
+
+    usecase "Mettre à jour le statut\nd'une livraison" as UC_L07
+    usecase "Confirmer une livraison" as UC_L08
+
+    usecase "Consulter son historique\nde livraisons" as UC_L09
+}
+
+
+Livreur --> UC_L01
+Livreur --> UC_L02
+
+Livreur --> UC_L03
+Livreur --> UC_L04
+Livreur --> UC_L05
+
+Livreur --> UC_L06
+
+Livreur --> UC_L07
+Livreur --> UC_L08
+
+Livreur --> UC_L09
+
+
+' Relations fonctionnelles
+
+UC_L04 ..> UC_L03 : <<include>>
+
+UC_L05 ..> UC_L03 : <<include>>
+
+UC_L06 ..> UC_L04 : <<include>>
+
+UC_L07 ..> UC_L06 : <<include>>
+
+UC_L08 ..> UC_L06 : <<include>>
+
+UC_L09 ..> UC_L08 : <<include>>
+
+@enduml

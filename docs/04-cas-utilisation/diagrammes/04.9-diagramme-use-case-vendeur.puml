@@ -1,0 +1,70 @@
+@startuml
+title Marketplace - Diagramme de cas d'utilisation Vendeur
+
+left to right direction
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam actorStyle awesome
+
+actor "Vendeur" as Vendeur
+
+rectangle "Marketplace - Espace Vendeur" {
+
+    usecase "Activer son rôle vendeur" as UC_V01
+
+    usecase "Créer une boutique" as UC_V02
+    usecase "Gérer sa boutique" as UC_V03
+
+    usecase "Ajouter un produit" as UC_V04
+    usecase "Modifier un produit" as UC_V05
+    usecase "Supprimer un produit" as UC_V06
+    usecase "Gérer les images produit" as UC_V07
+    usecase "Gérer les catégories produit" as UC_V08
+    usecase "Gérer le stock" as UC_V09
+    usecase "Consulter ses produits" as UC_V10
+
+    usecase "Consulter les commandes" as UC_V11
+    usecase "Préparer une commande" as UC_V12
+    usecase "Mettre à jour le statut\nd'une commande" as UC_V13
+
+    usecase "Consulter ses ventes" as UC_V14
+    usecase "Consulter ses statistiques" as UC_V15
+}
+
+
+Vendeur --> UC_V01
+
+Vendeur --> UC_V02
+Vendeur --> UC_V03
+
+Vendeur --> UC_V04
+Vendeur --> UC_V05
+Vendeur --> UC_V06
+Vendeur --> UC_V07
+Vendeur --> UC_V08
+Vendeur --> UC_V09
+Vendeur --> UC_V10
+
+Vendeur --> UC_V11
+Vendeur --> UC_V12
+Vendeur --> UC_V13
+
+Vendeur --> UC_V14
+Vendeur --> UC_V15
+
+
+' Relations fonctionnelles
+
+UC_V04 ..> UC_V02 : <<include>>
+
+UC_V05 ..> UC_V10 : <<include>>
+UC_V06 ..> UC_V10 : <<include>>
+
+UC_V12 ..> UC_V11 : <<include>>
+
+UC_V13 ..> UC_V12 : <<include>>
+
+UC_V15 ..> UC_V14 : <<include>>
+
+@enduml

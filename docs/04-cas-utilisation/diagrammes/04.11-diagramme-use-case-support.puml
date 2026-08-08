@@ -1,0 +1,66 @@
+@startuml
+title Diagramme de cas d'utilisation - Support
+
+left to right direction
+
+skinparam packageStyle rectangle
+
+actor Support
+
+rectangle "Marketplace" {
+
+    package "Gestion des tickets" {
+
+        usecase "Accéder à l'espace support" as UCS01
+
+        usecase "Consulter les demandes\nd'assistance" as UCS02
+
+        usecase "Créer un ticket\nsupport" as UCS03
+
+        usecase "Modifier le statut\nd'un ticket" as UCS04
+
+        usecase "Consulter l'historique\nd'un ticket" as UCS06
+    }
+
+
+    package "Communication utilisateur" {
+
+        usecase "Répondre à un\nutilisateur" as UCS05
+    }
+
+
+    package "Traitement des problèmes" {
+
+        usecase "Traiter une\nréclamation" as UCS07
+
+        usecase "Consulter les informations\nnécessaires" as UCS08
+    }
+}
+
+
+' Relations principales
+
+Support --> UCS01
+
+Support --> UCS02
+Support --> UCS03
+Support --> UCS04
+Support --> UCS05
+Support --> UCS06
+Support --> UCS07
+Support --> UCS08
+
+
+' Relations de dépendance
+
+UCS04 ..> UCS02 : <<include>>
+UCS05 ..> UCS02 : <<include>>
+UCS06 ..> UCS02 : <<include>>
+
+UCS07 ..> UCS03 : <<include>>
+UCS07 ..> UCS08 : <<include>>
+
+UCS05 ..> UCS08 : <<include>>
+
+
+@enduml
