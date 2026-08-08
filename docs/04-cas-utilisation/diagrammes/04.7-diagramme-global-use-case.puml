@@ -11,11 +11,11 @@ skinparam actorStyle awesome
 ' Acteurs
 ' =====================
 
-actor "Acheteur" as Acheteur
-actor "Vendeur" as Vendeur
-actor "Livreur" as Livreur
-actor "Support" as Support
-actor "Administrateur" as Admin
+actor "Acheteur" as Acheteur #LightBlue
+actor "Vendeur" as Vendeur #LightGreen
+actor "Livreur" as Livreur #Orange
+actor "Support" as Support #Plum
+actor "Administrateur" as Admin #LightCoral
 
 
 rectangle "Marketplace" {
@@ -80,57 +80,57 @@ rectangle "Marketplace" {
 ' Relations Acheteur
 ' =====================
 
-Acheteur --> UC01
-Acheteur --> UC02
-Acheteur --> UC03
-Acheteur --> UC04
-Acheteur --> UC05
-Acheteur --> UC06
-Acheteur --> UC07
-Acheteur --> UC08
-Acheteur --> UC09
+Acheteur -[#Blue]-> UC01
+Acheteur -[#Blue]-> UC02
+Acheteur -[#Blue]-> UC03
+Acheteur -[#Blue]-> UC04
+Acheteur -[#Blue]-> UC05
+Acheteur -[#Blue]-> UC06
+Acheteur -[#Blue]-> UC07
+Acheteur -[#Blue]-> UC08
+Acheteur -[#Blue]-> UC09
 
 
 ' =====================
 ' Relations Vendeur
 ' =====================
 
-Vendeur --> UC02
-Vendeur --> UC10
-Vendeur --> UC11
-Vendeur --> UC12
-Vendeur --> UC13
-Vendeur --> UC14
+Vendeur -[#Green]-> UC02
+Vendeur -[#Green]-> UC10
+Vendeur -[#Green]-> UC11
+Vendeur -[#Green]-> UC12
+Vendeur -[#Green]-> UC13
+Vendeur -[#Green]-> UC14
 
 
 ' =====================
 ' Relations Livreur
 ' =====================
 
-Livreur --> UC02
-Livreur --> UC15
-Livreur --> UC16
-Livreur --> UC17
+Livreur -[#Orange]-> UC02
+Livreur -[#Orange]-> UC15
+Livreur -[#Orange]-> UC16
+Livreur -[#Orange]-> UC17
 
 
 ' =====================
 ' Relations Support
 ' =====================
 
-Support --> UC02
-Support --> UC18
-Support --> UC19
+Support -[#Purple]-> UC02
+Support -[#Purple]-> UC18
+Support -[#Purple]-> UC19
 
 
 ' =====================
 ' Relations Administrateur
 ' =====================
 
-Admin --> UC02
-Admin --> UC20
-Admin --> UC21
-Admin --> UC22
-Admin --> UC23
+Admin -[#Red]-> UC02
+Admin -[#Red]-> UC20
+Admin -[#Red]-> UC21
+Admin -[#Red]-> UC22
+Admin -[#Red]-> UC23
 
 
 @enduml

@@ -8,7 +8,6 @@ Le projet vise à créer une marketplace moderne, évolutive et organisée perme
 
 Le projet est actuellement en phase de conception et d'initialisation technique.
 
-
 ---
 
 # Objectif
@@ -31,7 +30,7 @@ Chaque étape du projet doit être validée avant de passer à la suivante.
 MarketPlace/
 
 │
-├── backend/
+├── backend/marketplace-backend/
 │ └── Application Spring Boot.
 │ Responsable de la logique métier,
 │ des API REST, de la sécurité

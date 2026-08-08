@@ -50,28 +50,37 @@ Raison :
 
 Statut :
 
-* [ ] Configuration frontend validée
-* [ ] Projet React créé
-* [ ] Application démarrée avec succès
-* [ ] Première validation effectuée
+* [x] Configuration frontend validée
+* [x] Projet React créé
+* [x] Application démarrée avec succès
+* [x] Première validation effectuée
 
         # Historique des décisions
 
-## Version 1.1
+## Version 1.2
 
 Date : 30/07/2026
 
 Modification :
 
-Le langage frontend a été défini.
+Le projet frontend React a été généré avec succès.
 
-Décision :
+Configuration utilisée :
 
-Utilisation de TypeScript avec React.
+  React
+  TypeScript
+  Vite
+  ESLint
 
-Raison :
+Résultat :
 
-* Meilleure maintenabilité du projet.
-* Réduction des erreurs grâce au typage statique.
-* Adapté à une application complexe avec plusieurs acteurs.
-* 
+  Projet créé dans :
+  
+frontend/
+
+  Dépendances npm installées.
+  Serveur de développement démarré avec succès.
+
+Commande de démarrage validée :
+
+npm run dev

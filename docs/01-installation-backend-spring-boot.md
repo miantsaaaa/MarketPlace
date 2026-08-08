@@ -59,24 +59,24 @@ Statut :
 
     # Historique des décisions
 
-## Version 1.2
+## Version 1.3
 
 Date : 30/07/2026
 
 Modification :
 
-Le projet Spring Boot a été généré avec succès depuis Spring Initializr.
+Le premier démarrage de l'application Spring Boot a été effectué avec succès.
 
-Emplacement :
+Résultat :
 
-backend/marketplace-backend
+  Compilation Maven réussie.
+  Application Spring Boot démarrée.
+  Aucun message d'erreur bloquant détecté.
 
-Structure obtenue :
+Commande utilisée :
 
-  Projet Maven initialisé
-  Source Java créée
-  Configuration Maven générée
+mvn spring-boot:run
 
-Prochaine validation :
+Validation :
 
-Démarrer l'application Spring Boot et vérifier son bon fonctionnement.
+L'environnement backend initial est fonctionnel.
