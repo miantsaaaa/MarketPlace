@@ -1,9 +1,13 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import './App.css'
+import MainLayout from './layouts/MainLayout'
+import CataloguePage from './pages/CataloguePage'
+import ErrorBoundary from './components/ErrorBoundary'
+import './components/catalogue.css'
 import {
   AVAILABLE_LANGUAGES,
   DEFAULT_LANGUAGE,
-  getTranslations,
   type SupportedLanguage,
 } from './i18n'
 
@@ -22,66 +26,22 @@ function getInitialLanguage(): SupportedLanguage {
 }
 
 function App() {
-  const [language, setLanguage] =
-    useState<SupportedLanguage>(getInitialLanguage)
-
-  const t = getTranslations(language)
-
-  const changeLanguage = (newLanguage: SupportedLanguage) => {
-    setLanguage(newLanguage)
-
-    const url = new URL(window.location.href)
-
-    url.searchParams.set('lang', newLanguage)
-
-    window.history.replaceState({}, '', url)
-  }
+  const [language] = useState<SupportedLanguage>(getInitialLanguage)
 
   return (
-    <div className="app">
-      <main className="app-content">
-        <h1>{t.common.appName}</h1>
-
-        <p className="app-status">
-          {t.navigation.catalogue}
-        </p>
-
-        <p className="app-api">
-          {t.common.search}
-        </p>
-
-        <div className="language-selector">
-          <span>{t.common.language} :</span>
-
-          {AVAILABLE_LANGUAGES.map((languageCode) => {
-            const languageTranslations = getTranslations(languageCode)
-
-            const languageLabel =
-              languageCode === 'fr'
-                ? languageTranslations.language.french
-                : languageCode === 'en'
-                  ? languageTranslations.language.english
-                  : languageTranslations.language.malagasy
-
-            return (
-              <button
-                key={languageCode}
-                type="button"
-                className={language === languageCode ? 'active' : ''}
-                onClick={() => changeLanguage(languageCode)}
-              >
-                {languageLabel}
-              </button>
-            )
-          })}
-        </div>
-
-        <p className="current-language">
-          {t.language.current}:{' '}
-          <strong>{language.toUpperCase()}</strong>
-        </p>
-      </main>
-    </div>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<MainLayout language={language} />}>
+            <Route path="/" element={<CataloguePage language={language} />} />
+            <Route
+              path="/produit/:slug"
+              element={<p>Page détail produit (à venir — Frontend 2)</p>}
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
   )
 }
 
