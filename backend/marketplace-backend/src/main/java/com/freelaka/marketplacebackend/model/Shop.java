@@ -11,8 +11,9 @@ public class Shop {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "owner_user_id", nullable = false)
-    private Long ownerUserId;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_user_id", nullable = false)
+    private User owner;
 
     @Column(nullable = false, length = 150)
     private String name;
@@ -38,8 +39,8 @@ public class Shop {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public Long getOwnerUserId() { return ownerUserId; }
-    public void setOwnerUserId(Long ownerUserId) { this.ownerUserId = ownerUserId; }
+    public User getOwner() { return owner; }
+    public void setOwner(User owner) { this.owner = owner; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
