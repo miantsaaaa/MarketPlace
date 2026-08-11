@@ -1,121 +1,87 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
+import {
+  AVAILABLE_LANGUAGES,
+  DEFAULT_LANGUAGE,
+  getTranslations,
+  type SupportedLanguage,
+} from './i18n'
+
+function getInitialLanguage(): SupportedLanguage {
+  const params = new URLSearchParams(window.location.search)
+  const requestedLanguage = params.get('lang')
+
+  if (
+    requestedLanguage &&
+    AVAILABLE_LANGUAGES.includes(requestedLanguage as SupportedLanguage)
+  ) {
+    return requestedLanguage as SupportedLanguage
+  }
+
+  return DEFAULT_LANGUAGE
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [language, setLanguage] =
+    useState<SupportedLanguage>(getInitialLanguage)
+
+  const t = getTranslations(language)
+
+  const changeLanguage = (newLanguage: SupportedLanguage) => {
+    setLanguage(newLanguage)
+
+    const url = new URL(window.location.href)
+
+    url.searchParams.set('lang', newLanguage)
+
+    window.history.replaceState({}, '', url)
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app">
+      <main className="app-content">
+        <h1>{t.common.appName}</h1>
 
-      <div className="ticks"></div>
+        <p className="app-status">
+          {t.navigation.catalogue}
+        </p>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <p className="app-api">
+          {t.common.search}
+        </p>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        <div className="language-selector">
+          <span>{t.common.language} :</span>
+
+          {AVAILABLE_LANGUAGES.map((languageCode) => {
+            const languageTranslations = getTranslations(languageCode)
+
+            const languageLabel =
+              languageCode === 'fr'
+                ? languageTranslations.language.french
+                : languageCode === 'en'
+                  ? languageTranslations.language.english
+                  : languageTranslations.language.malagasy
+
+            return (
+              <button
+                key={languageCode}
+                type="button"
+                className={language === languageCode ? 'active' : ''}
+                onClick={() => changeLanguage(languageCode)}
+              >
+                {languageLabel}
+              </button>
+            )
+          })}
+        </div>
+
+        <p className="current-language">
+          {t.language.current}:{' '}
+          <strong>{language.toUpperCase()}</strong>
+        </p>
+      </main>
+    </div>
   )
 }
 
