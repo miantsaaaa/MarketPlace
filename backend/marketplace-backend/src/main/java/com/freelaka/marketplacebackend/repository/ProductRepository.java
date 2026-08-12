@@ -20,4 +20,9 @@ public interface ProductRepository
             Long categoryId,
             Pageable pageable
     );
+
+    Page<Product> findByShopIdAndActiveTrue(
+            Long shopId,
+            Pageable pageable
+    );
 }

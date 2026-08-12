@@ -1,5 +1,6 @@
 package com.freelaka.marketplacebackend.controller;
 
+import com.freelaka.marketplacebackend.dto.ProductSummaryDto;
 import com.freelaka.marketplacebackend.dto.ShopDetailDto;
 import com.freelaka.marketplacebackend.dto.ShopSummaryDto;
 import com.freelaka.marketplacebackend.service.ShopService;
@@ -19,12 +20,30 @@ public class ShopController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ShopSummaryDto>> listShops(Pageable pageable) {
-        return ResponseEntity.ok(shopService.getActiveShops(pageable));
+    public ResponseEntity<Page<ShopSummaryDto>> listShops(
+            Pageable pageable
+    ) {
+        return ResponseEntity.ok(
+                shopService.getActiveShops(pageable)
+        );
     }
 
     @GetMapping("/{slug}")
-    public ResponseEntity<ShopDetailDto> getShop(@PathVariable String slug) {
-        return ResponseEntity.ok(shopService.getShopBySlug(slug));
+    public ResponseEntity<ShopDetailDto> getShop(
+            @PathVariable String slug
+    ) {
+        return ResponseEntity.ok(
+                shopService.getShopBySlug(slug)
+        );
+    }
+
+    @GetMapping("/{slug}/products")
+    public ResponseEntity<Page<ProductSummaryDto>> getShopProducts(
+            @PathVariable String slug,
+            Pageable pageable
+    ) {
+        return ResponseEntity.ok(
+                shopService.getShopProducts(slug, pageable)
+        );
     }
 }
