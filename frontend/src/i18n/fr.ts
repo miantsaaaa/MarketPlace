@@ -73,6 +73,7 @@ const fr = {
 
   auth: {
     login: 'Connexion',
+    logout: 'Déconnexion',
     register: 'Inscription',
     guest: 'Visiteur',
     connectedUser: 'Utilisateur connecté',

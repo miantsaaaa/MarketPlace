@@ -1,0 +1,252 @@
+.catalogue-layout {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.catalogue-layout-content {
+  flex: 1;
+  width: 100%;
+}
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #1f2937;
+  color: #fff;
+}
+
+.navbar-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-links a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.navbar-links a:hover {
+  color: #fff;
+}
+
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-auth a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.navbar-auth a:hover {
+  background-color: #374151;
+}
+
+.navbar-user {
+  font-size: 0.9rem;
+  color: #d1d5db;
+}
+
+/* Page catalogue */
+.catalogue-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.catalogue-page h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.catalogue-page > p {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+/* Recherche */
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.search-bar button {
+  padding: 0.6rem 1.2rem;
+  background-color: #1f2937;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.search-bar button:hover {
+  background-color: #374151;
+}
+
+/* Filtres/catégories */
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-filter button {
+  padding: 0.4rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.category-filter button.active {
+  background-color: #1f2937;
+  color: #fff;
+  border-color: #1f2937;
+}
+
+/* Liste produits */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.product-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background-color: #fff;
+}
+
+.product-card-image-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #f3f4f6;
+  border-radius: 6px;
+}
+
+.product-card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.product-card-price {
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.product-card-status {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.product-card-link {
+  margin-top: 0.5rem;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 6px;
+  background-color: #1f2937;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.product-card-link:hover {
+  background-color: #374151;
+}
+
+.product-card-link.disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* Error boundary */
+.error-boundary {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 1.5rem;
+  border: 1px solid #fca5a5;
+  background-color: #fef2f2;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.error-boundary code {
+  background-color: #fee2e2;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.navbar-language {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.navbar-language button {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+  background: transparent;
+  color: #d1d5db;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.navbar-language button.active {
+  background-color: #fff;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.navbar-language button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.category-filter-status {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.category-filter-status.error {
+  color: #dc2626;
+}
