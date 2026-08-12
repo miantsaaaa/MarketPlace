@@ -26,17 +26,59 @@ function getInitialLanguage(): SupportedLanguage {
 }
 
 function App() {
-  const [language] = useState<SupportedLanguage>(getInitialLanguage)
+  const [language, setLanguage] =
+    useState<SupportedLanguage>(getInitialLanguage)
+
+  const changeLanguage = (newLanguage: SupportedLanguage) => {
+    setLanguage(newLanguage)
+
+    const url = new URL(window.location.href)
+    url.searchParams.set('lang', newLanguage)
+    window.history.replaceState({}, '', url)
+  }
 
   return (
     <ErrorBoundary>
       <BrowserRouter>
         <Routes>
-          <Route element={<MainLayout language={language} />}>
+          <Route
+            element={
+              <MainLayout
+                language={language}
+                onChangeLanguage={changeLanguage}
+              />
+            }
+          >
             <Route path="/" element={<CataloguePage language={language} />} />
+
+            {/*
+              Route de préparation pour la tâche "Détail produit" (Frontend 2).
+              Le routing et la navigation depuis ProductCard sont déjà en place
+              (Frontend 1 — Catalogue). Le contenu réel de cette page sera
+              développé lors de la prochaine tâche.
+            */}
             <Route
               path="/produit/:slug"
               element={<p>Page détail produit (à venir — Frontend 2)</p>}
+            />
+
+            {/* Pages ci-dessous : routes placeholder pour éviter des liens morts
+                dans la Navbar. Développement réel à faire par Frontend 2. */}
+            <Route
+              path="/categories"
+              element={<p>Page catégories (à venir — Frontend 2)</p>}
+            />
+            <Route
+              path="/shops"
+              element={<p>Page boutiques (à venir — Frontend 2)</p>}
+            />
+            <Route
+              path="/login"
+              element={<p>Page connexion (à venir — Frontend 2)</p>}
+            />
+            <Route
+              path="/register"
+              element={<p>Page inscription (à venir — Frontend 2)</p>}
             />
           </Route>
         </Routes>

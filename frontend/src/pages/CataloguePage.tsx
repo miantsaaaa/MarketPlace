@@ -26,9 +26,11 @@ function CataloguePage({ language }: CataloguePageProps) {
   useEffect(() => {
     let cancelled = false
 
+    // Réinitialisation intentionnelle de l'état loading/error avant de
+    // lancer le fetch : pattern standard pour un effet de data-fetching.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true)
     setError(null)
-
     productService
       .getFiltered({
         search: searchQuery || undefined,

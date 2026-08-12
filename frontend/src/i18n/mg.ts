@@ -73,6 +73,7 @@ noCategories: 'Tsy misy sokajy azo aseho.',
 
 auth: {
 login: 'Hiditra',
+logout: 'Hivoaka',
 register: 'Hisoratra anarana',
 guest: 'Mpitsidika',
 connectedUser: 'Mpampiasa tafiditra',

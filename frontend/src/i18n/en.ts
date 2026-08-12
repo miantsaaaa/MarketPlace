@@ -73,6 +73,7 @@ const en = {
 
   auth: {
     login: 'Login',
+    logout: 'Logout',
     register: 'Register',
     guest: 'Guest',
     connectedUser: 'Logged-in user',

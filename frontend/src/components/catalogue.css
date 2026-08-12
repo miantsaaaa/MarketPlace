@@ -214,3 +214,39 @@
   padding: 0.1rem 0.4rem;
   border-radius: 4px;
 }
+
+.navbar-language {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.navbar-language button {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+  background: transparent;
+  color: #d1d5db;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.navbar-language button.active {
+  background-color: #fff;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.navbar-language button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.category-filter-status {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.category-filter-status.error {
+  color: #dc2626;
+}
