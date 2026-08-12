@@ -13,7 +13,7 @@ async function request<T>(
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...options,
     headers: {
-      'Content-Type': 'application/json',
+      'ngrok-skip-browser-warning': 'true',
       ...options?.headers,
     },
   })
@@ -37,6 +37,9 @@ export const apiClient = {
   post<T>(endpoint: string, body?: unknown): Promise<T> {
     return request<T>(endpoint, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: body ? JSON.stringify(body) : undefined,
     })
   },
@@ -44,6 +47,9 @@ export const apiClient = {
   put<T>(endpoint: string, body?: unknown): Promise<T> {
     return request<T>(endpoint, {
       method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: body ? JSON.stringify(body) : undefined,
     })
   },
@@ -51,6 +57,9 @@ export const apiClient = {
   patch<T>(endpoint: string, body?: unknown): Promise<T> {
     return request<T>(endpoint, {
       method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: body ? JSON.stringify(body) : undefined,
     })
   },

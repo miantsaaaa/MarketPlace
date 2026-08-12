@@ -1,10 +1,12 @@
 import { apiClient } from '../api/client'
-import type { Category } from '../types/category'
+import type { Category, CategoryPage } from '../types/category'
 import type { Product } from '../types/product'
 
 export const categoryService = {
-  getAll(): Promise<Category[]> {
-    return apiClient.get<Category[]>('/api/categories')
+  async getAll(): Promise<Category[]> {
+    const response = await apiClient.get<CategoryPage>('/api/categories')
+
+    return response.content
   },
 
   getBySlug(slug: string): Promise<Category> {

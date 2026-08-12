@@ -1,11 +1,5 @@
-export interface Category {
-  id: number
-  name: string
-  slug: string
-}
-
-export interface CategoryPage {
-  content: Category[]
+export interface PageResponse<T> {
+  content: T[]
   empty: boolean
   first: boolean
   last: boolean

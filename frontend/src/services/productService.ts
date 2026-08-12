@@ -1,5 +1,6 @@
 import { apiClient } from '../api/client'
 import type { Product } from '../types/product'
+import type { PageResponse } from '../types/page'
 
 export interface ProductFilters {
   search?: string
@@ -10,8 +11,8 @@ export interface ProductFilters {
 }
 
 export const productService = {
-  getAll(): Promise<Product[]> {
-    return apiClient.get<Product[]>('/api/products')
+  getAll(): Promise<PageResponse<Product>> {
+    return apiClient.get<PageResponse<Product>>('/api/products')
   },
 
   getBySlug(slug: string): Promise<Product> {
@@ -20,31 +21,36 @@ export const productService = {
     )
   },
 
-  search(query: string): Promise<Product[]> {
-    return apiClient.get<Product[]>(
+  search(query: string): Promise<PageResponse<Product>> {
+    return apiClient.get<PageResponse<Product>>(
       `/api/products?search=${encodeURIComponent(query)}`
     )
   },
 
-  getByCategory(categorySlug: string): Promise<Product[]> {
-    return apiClient.get<Product[]>(
+  getByCategory(categorySlug: string): Promise<PageResponse<Product>> {
+    return apiClient.get<PageResponse<Product>>(
       `/api/products?category=${encodeURIComponent(categorySlug)}`
     )
   },
 
-  getByShop(shopSlug: string): Promise<Product[]> {
-    return apiClient.get<Product[]>(
+  getByShop(shopSlug: string): Promise<PageResponse<Product>> {
+    return apiClient.get<PageResponse<Product>>(
       `/api/products?shop=${encodeURIComponent(shopSlug)}`
     )
   },
 
-  getByPrice(minPrice: number, maxPrice: number): Promise<Product[]> {
-    return apiClient.get<Product[]>(
+  getByPrice(
+    minPrice: number,
+    maxPrice: number
+  ): Promise<PageResponse<Product>> {
+    return apiClient.get<PageResponse<Product>>(
       `/api/products?minPrice=${encodeURIComponent(minPrice)}&maxPrice=${encodeURIComponent(maxPrice)}`
     )
   },
 
-  getFiltered(filters: ProductFilters): Promise<Product[]> {
+  getFiltered(
+    filters: ProductFilters
+  ): Promise<PageResponse<Product>> {
     const params = new URLSearchParams()
 
     if (filters.search) {
@@ -69,7 +75,7 @@ export const productService = {
 
     const query = params.toString()
 
-    return apiClient.get<Product[]>(
+    return apiClient.get<PageResponse<Product>>(
       `/api/products${query ? `?${query}` : ''}`
     )
   },
