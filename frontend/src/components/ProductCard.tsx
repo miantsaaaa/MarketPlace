@@ -22,18 +22,15 @@ function ProductCard({ product, language }: ProductCardProps) {
       </p>
 
       <p className="product-card-status">
-        {product.isActive ? t.common.available : t.common.unavailable}
+        {t.common.available}
       </p>
 
-      {product.isActive ? (
-        <Link to={`/produit/${product.slug}`} className="product-card-link">
-          {t.common.viewDetails}
-        </Link>
-      ) : (
-        <span className="product-card-link disabled">
-          {t.common.viewDetails}
-        </span>
-      )}
+      <Link
+        to={`/produit/${product.slug}`}
+        className="product-card-link"
+      >
+        {t.common.viewDetails}
+      </Link>
     </article>
   )
 }

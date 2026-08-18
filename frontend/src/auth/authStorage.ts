@@ -1,6 +1,7 @@
 import type { AuthUser } from './authTypes'
 
 const AUTH_USER_KEY = 'marketplace_auth_user'
+const AUTH_TOKEN_KEY = 'marketplace_auth_token'
 
 export function getStoredUser(): AuthUser | null {
   const storedUser = localStorage.getItem(AUTH_USER_KEY)
@@ -23,4 +24,21 @@ export function saveUser(user: AuthUser): void {
 
 export function removeStoredUser(): void {
   localStorage.removeItem(AUTH_USER_KEY)
+}
+
+export function getStoredToken(): string | null {
+  return localStorage.getItem(AUTH_TOKEN_KEY)
+}
+
+export function saveToken(token: string): void {
+  localStorage.setItem(AUTH_TOKEN_KEY, token)
+}
+
+export function removeStoredToken(): void {
+  localStorage.removeItem(AUTH_TOKEN_KEY)
+}
+
+export function clearAuthStorage(): void {
+  removeStoredUser()
+  removeStoredToken()
 }
