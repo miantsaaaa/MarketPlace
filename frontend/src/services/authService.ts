@@ -27,7 +27,7 @@ export function login(
 
 export function register(
   request: RegisterRequest
-): Promise<AuthResponse> {
+): Promise<AuthUser> {
   const payload = {
     firstName: request.firstName,
     lastName: request.lastName,
@@ -36,7 +36,7 @@ export function register(
     password: request.password,
   }
 
-  return apiClient.post<AuthResponse>(
+  return apiClient.post<AuthUser>(
     AUTH_REGISTER_ENDPOINT,
     payload
   )

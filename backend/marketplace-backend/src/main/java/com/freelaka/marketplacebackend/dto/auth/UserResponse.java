@@ -11,6 +11,7 @@ public class UserResponse {
     private String lastName;
     private String email;
     private String phone;
+    private String status;
     private List<String> roles;
 
     public UserResponse() {
@@ -22,6 +23,7 @@ public class UserResponse {
             String lastName,
             String email,
             String phone,
+            String status,
             List<String> roles
     ) {
         this.id = id;
@@ -29,6 +31,7 @@ public class UserResponse {
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+        this.status = status;
         this.roles = roles;
     }
 
@@ -45,6 +48,7 @@ public class UserResponse {
                 user.getLastName(),
                 user.getEmail(),
                 user.getPhone(),
+                user.getStatus(),
                 roles
         );
     }
@@ -67,6 +71,10 @@ public class UserResponse {
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public List<String> getRoles() {

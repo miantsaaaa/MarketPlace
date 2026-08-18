@@ -144,20 +144,10 @@ export function AuthProvider({
     async (
       request: RegisterRequest
     ): Promise<AuthUser> => {
-      const response =
+      const user =
         await registerRequest(request)
 
-      saveToken(response.token)
-      saveUser(response.user)
-
-      setAuthState({
-        user: response.user,
-        isAuthenticated: true,
-        isGuest: false,
-        isLoading: false,
-      })
-
-      return response.user
+      return user
     },
     []
   )
