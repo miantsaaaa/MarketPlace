@@ -9,12 +9,15 @@ import './App.css'
 
 import MainLayout from './layouts/MainLayout'
 import CataloguePage from './pages/CataloguePage'
+import { LoginPage } from './pages/LoginPage'
+import { RegisterPage } from './pages/RegisterPage'
 import ErrorBoundary from './components/ErrorBoundary'
 import './components/catalogue.css'
 
 import {
   AVAILABLE_LANGUAGES,
   DEFAULT_LANGUAGE,
+  getTranslations,
   type SupportedLanguage,
 } from './i18n'
 
@@ -42,6 +45,8 @@ function App() {
     useState<SupportedLanguage>(
       getInitialLanguage
     )
+
+  const t = getTranslations(language)
 
   const changeLanguage = (
     newLanguage: SupportedLanguage
@@ -120,20 +125,14 @@ function App() {
             <Route
               path="/login"
               element={
-                <p>
-                  Page connexion (à venir —
-                  Frontend 1)
-                </p>
+                <LoginPage t={t} />
               }
             />
 
             <Route
               path="/register"
               element={
-                <p>
-                  Page inscription (à venir —
-                  Frontend 1)
-                </p>
+                <RegisterPage t={t} />
               }
             />
           </Route>
