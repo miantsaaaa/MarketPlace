@@ -39,7 +39,6 @@ export interface RegisterRequest {
   email: string
   phone?: string
   password: string
-  confirmPassword: string
 }
 
 export interface AuthResponse {

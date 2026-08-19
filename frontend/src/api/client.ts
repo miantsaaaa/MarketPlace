@@ -1,7 +1,6 @@
 import { getStoredToken } from '../auth/authStorage'
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 if (!API_BASE_URL) {
   throw new Error(
@@ -11,9 +10,7 @@ if (!API_BASE_URL) {
 
 function notifyUnauthorized(): void {
   window.dispatchEvent(
-    new CustomEvent(
-      'marketplace-auth-unauthorized'
-    )
+    new CustomEvent('marketplace-auth-unauthorized')
   )
 }
 
@@ -23,17 +20,23 @@ async function request<T>(
 ): Promise<T> {
   const token = getStoredToken()
 
-  const headers = new Headers(
-    options?.headers
-  )
+  const headers = new Headers(options?.headers)
 
+  /*
+   * Permet de supprimer la page d'avertissement
+   * ngrok lorsque celle-ci est affichée.
+   */
   headers.set(
     'ngrok-skip-browser-warning',
     'true'
   )
 
+  /*
+   * Les requêtes contenant un body JSON doivent
+   * indiquer explicitement leur Content-Type.
+   */
   if (
-    options?.body &&
+    options?.body !== undefined &&
     !headers.has('Content-Type')
   ) {
     headers.set(
@@ -42,6 +45,9 @@ async function request<T>(
     )
   }
 
+  /*
+   * Ajout du JWT lorsqu'une session existe.
+   */
   if (token) {
     headers.set(
       'Authorization',
@@ -57,6 +63,10 @@ async function request<T>(
     }
   )
 
+  /*
+   * Une réponse 401 indique que la session JWT
+   * n'est plus valide.
+   */
   if (response.status === 401) {
     notifyUnauthorized()
 
@@ -65,28 +75,36 @@ async function request<T>(
     )
   }
 
+  /*
+   * Les autres erreurs HTTP sont propagées
+   * avec le message retourné par l'API lorsqu'il existe.
+   */
   if (!response.ok) {
     let message =
       `Erreur API : ${response.status} ${response.statusText}`
 
     try {
-      const errorBody =
-        await response.json()
+      const errorBody = await response.json()
 
       if (
         errorBody &&
-        typeof errorBody.message ===
-          'string'
+        typeof errorBody.message === 'string'
       ) {
         message = errorBody.message
       }
     } catch {
-      // La réponse peut ne pas contenir de JSON.
+      /*
+       * Certaines réponses HTTP peuvent ne pas
+       * contenir de JSON.
+       */
     }
 
     throw new Error(message)
   }
 
+  /*
+   * 204 No Content : aucune donnée JSON à parser.
+   */
   if (response.status === 204) {
     return undefined as T
   }
@@ -95,6 +113,7 @@ async function request<T>(
 }
 
 export const apiClient = {
+
   get<T>(
     endpoint: string
   ): Promise<T> {
