@@ -7,14 +7,11 @@ import type {
   RegisterRequest,
 } from '../auth/authTypes'
 
-const AUTH_LOGIN_ENDPOINT =
-  '/api/auth/login'
+const AUTH_LOGIN_ENDPOINT = '/api/auth/login'
 
-const AUTH_REGISTER_ENDPOINT =
-  '/api/auth/register'
+const AUTH_REGISTER_ENDPOINT = '/api/auth/register'
 
-const AUTH_ME_ENDPOINT =
-  '/api/auth/me'
+const AUTH_ME_ENDPOINT = '/api/auth/me'
 
 export function login(
   request: LoginRequest
@@ -29,10 +26,10 @@ export function register(
   request: RegisterRequest
 ): Promise<AuthUser> {
   const payload = {
-    firstName: request.firstName,
-    lastName: request.lastName,
-    email: request.email,
-    phone: request.phone,
+    firstName: request.firstName.trim(),
+    lastName: request.lastName.trim(),
+    email: request.email.trim(),
+    phone: request.phone?.trim() || undefined,
     password: request.password,
   }
 
