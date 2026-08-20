@@ -22,3 +22,4 @@ export const getTranslations = (
 }
 
 export { fr, en, mg }
+
