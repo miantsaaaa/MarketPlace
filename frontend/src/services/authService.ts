@@ -11,7 +11,13 @@ const AUTH_LOGIN_ENDPOINT = '/api/auth/login'
 
 const AUTH_REGISTER_ENDPOINT = '/api/auth/register'
 
-const AUTH_ME_ENDPOINT = '/api/auth/me'
+const USERS_ME_ENDPOINT = '/api/users/me'
+
+const SELLER_ROLE_ENDPOINT =
+  '/api/users/me/roles/seller'
+
+const DELIVERY_ROLE_ENDPOINT =
+  '/api/users/me/roles/delivery'
 
 export function login(
   request: LoginRequest
@@ -41,6 +47,18 @@ export function register(
 
 export function getCurrentUser(): Promise<AuthUser> {
   return apiClient.get<AuthUser>(
-    AUTH_ME_ENDPOINT
+    USERS_ME_ENDPOINT
+  )
+}
+
+export function activateSeller(): Promise<AuthUser> {
+  return apiClient.post<AuthUser>(
+    SELLER_ROLE_ENDPOINT
+  )
+}
+
+export function activateDelivery(): Promise<AuthUser> {
+  return apiClient.post<AuthUser>(
+    DELIVERY_ROLE_ENDPOINT
   )
 }

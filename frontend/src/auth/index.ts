@@ -23,6 +23,17 @@ export {
 } from './authStorage'
 
 export {
+  hasRole,
+  hasAnyRole,
+  hasAllRoles,
+  isAdmin,
+  isSeller,
+  isDelivery,
+  isSupport,
+  isBuyer,
+} from './roleUtils'
+
+export {
   AuthProvider,
 } from './AuthProvider'
 

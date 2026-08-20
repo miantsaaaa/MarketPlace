@@ -6,11 +6,27 @@ import {
 
 import { useAuth } from '../hooks/useAuth'
 
-function ProtectedRoute() {
+import {
+  hasAnyRole,
+  hasRole,
+} from '../auth/roleUtils'
+
+import type { UserRole } from '../auth/authTypes'
+
+interface ProtectedRouteProps {
+  requiredRole?: UserRole
+  requiredRoles?: UserRole[]
+}
+
+function ProtectedRoute({
+  requiredRole,
+  requiredRoles,
+}: ProtectedRouteProps) {
   const {
     isAuthenticated,
     isGuest,
     isLoading,
+    user,
   } = useAuth()
 
   const location = useLocation()
@@ -22,10 +38,11 @@ function ProtectedRoute() {
       </div>
     )
   }
-
+ 
   if (
     !isAuthenticated ||
-    isGuest
+    isGuest ||
+    !user
   ) {
     return (
       <Navigate
@@ -36,6 +53,47 @@ function ProtectedRoute() {
         }}
       />
     )
+  }
+
+  if (
+    !requiredRole &&
+    (!requiredRoles ||
+      requiredRoles.length === 0)
+  ) {
+    return <Outlet />
+  }
+
+  if (requiredRole) {
+    if (!hasRole(user, requiredRole)) {
+      return (
+        <Navigate
+          to="/403"
+          replace
+          state={{
+            from: location,
+          }}
+        />
+      )
+    }
+
+    return <Outlet />
+  }
+ 
+  if (
+    requiredRoles &&
+    requiredRoles.length > 0
+  ) {
+    if (!hasAnyRole(user, requiredRoles)) {
+      return (
+        <Navigate
+          to="/403"
+          replace
+          state={{
+            from: location,
+          }}
+        />
+      )
+    }
   }
 
   return <Outlet />

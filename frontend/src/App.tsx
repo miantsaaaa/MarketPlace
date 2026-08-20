@@ -11,7 +11,10 @@ import MainLayout from './layouts/MainLayout'
 import CataloguePage from './pages/CataloguePage'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
+import { ForbiddenPage } from './pages/ForbiddenPage'
 import ErrorBoundary from './components/ErrorBoundary'
+import ProtectedRoute from './routes/ProtectedRoute'
+
 import './components/catalogue.css'
 
 import {
@@ -135,6 +138,130 @@ function App() {
                 <RegisterPage t={t} />
               }
             />
+
+            <Route
+              path="/403"
+              element={
+                <ForbiddenPage />
+              }
+            />
+
+            <Route element={<ProtectedRoute />}>
+              <Route
+                path="/private"
+                element={
+                  <div>
+                    <h1>
+                      Zone privée
+                    </h1>
+
+                    <p>
+                      Accessible à tout
+                      utilisateur authentifié.
+                    </p>
+                  </div>
+                }
+              />
+            </Route>
+
+            <Route
+              element={
+                <ProtectedRoute
+                  requiredRole="ADMIN"
+                />
+              }
+            >
+              <Route
+                path="/admin"
+                element={
+                  <div>
+                    <h1>
+                      Zone ADMIN
+                    </h1>
+
+                    <p>
+                      Accessible uniquement
+                      au rôle ADMIN.
+                    </p>
+                  </div>
+                }
+              />
+            </Route>
+
+            <Route
+              element={
+                <ProtectedRoute
+                  requiredRole="SELLER"
+                />
+              }
+            >
+              <Route
+                path="/seller"
+                element={
+                  <div>
+                    <h1>
+                      Zone SELLER
+                    </h1>
+
+                    <p>
+                      Accessible aux
+                      utilisateurs ayant le
+                      rôle SELLER.
+                    </p>
+                  </div>
+                }
+              />
+            </Route>
+
+            <Route
+              element={
+                <ProtectedRoute
+                  requiredRole="DELIVERY"
+                />
+              }
+            >
+              <Route
+                path="/delivery"
+                element={
+                  <div>
+                    <h1>
+                      Zone DELIVERY
+                    </h1>
+
+                    <p>
+                      Accessible aux
+                      utilisateurs ayant le
+                      rôle DELIVERY.
+                    </p>
+                  </div>
+                }
+              />
+            </Route>
+
+            <Route
+              element={
+                <ProtectedRoute
+                  requiredRole="SUPPORT"
+                />
+              }
+            >
+              <Route
+                path="/support"
+                element={
+                  <div>
+                    <h1>
+                      Zone SUPPORT
+                    </h1>
+
+                    <p>
+                      Accessible aux
+                      utilisateurs ayant le
+                      rôle SUPPORT.
+                    </p>
+                  </div>
+                }
+              />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

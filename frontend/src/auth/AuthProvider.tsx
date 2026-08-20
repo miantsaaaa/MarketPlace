@@ -12,6 +12,7 @@ import {
   type AuthUser,
   type LoginRequest,
   type RegisterRequest,
+  type UserRole,
 } from './authTypes'
 
 import {
@@ -22,10 +23,18 @@ import {
 } from './authStorage'
 
 import {
+  activateDelivery as activateDeliveryRequest,
+  activateSeller as activateSellerRequest,
   getCurrentUser,
   login as loginRequest,
   register as registerRequest,
 } from '../services/authService'
+
+import {
+  hasRole as checkHasRole,
+  hasAnyRole as checkHasAnyRole,
+  hasAllRoles as checkHasAllRoles,
+} from './roleUtils'
 
 import { AuthContext } from './authContext'
 
@@ -47,6 +56,24 @@ export function AuthProvider({
       isLoading: false,
     })
   }, [])
+
+  const refreshUser = useCallback(
+    async (): Promise<AuthUser> => {
+      const user = await getCurrentUser()
+
+      saveUser(user)
+
+      setAuthState({
+        user,
+        isAuthenticated: true,
+        isGuest: false,
+        isLoading: false,
+      })
+
+      return user
+    },
+    []
+  )
 
   useEffect(() => {
     let mounted = true
@@ -152,18 +179,100 @@ export function AuthProvider({
     []
   )
 
+  const activateSeller = useCallback(
+    async (): Promise<AuthUser> => {
+      const user =
+        await activateSellerRequest()
+
+      saveUser(user)
+
+      setAuthState((currentState) => ({
+        ...currentState,
+        user,
+        isAuthenticated: true,
+        isGuest: false,
+        isLoading: false,
+      }))
+
+      return user
+    },
+    []
+  )
+
+  const activateDelivery = useCallback(
+    async (): Promise<AuthUser> => {
+      const user =
+        await activateDeliveryRequest()
+
+      saveUser(user)
+
+      setAuthState((currentState) => ({
+        ...currentState,
+        user,
+        isAuthenticated: true,
+        isGuest: false,
+        isLoading: false,
+      }))
+
+      return user
+    },
+    []
+  )
+
+  const hasRole = useCallback(
+    (role: UserRole): boolean => {
+      return checkHasRole(
+        authState.user,
+        role
+      )
+    },
+    [authState.user]
+  )
+
+  const hasAnyRole = useCallback(
+    (roles: UserRole[]): boolean => {
+      return checkHasAnyRole(
+        authState.user,
+        roles
+      )
+    },
+    [authState.user]
+  )
+
+  const hasAllRoles = useCallback(
+    (roles: UserRole[]): boolean => {
+      return checkHasAllRoles(
+        authState.user,
+        roles
+      )
+    },
+    [authState.user]
+  )
+
   const value = useMemo(
     () => ({
       ...authState,
       login,
       register,
       logout,
+      refreshUser,
+      activateSeller,
+      activateDelivery,
+      hasRole,
+      hasAnyRole,
+      hasAllRoles,
     }),
     [
       authState,
       login,
       register,
       logout,
+      refreshUser,
+      activateSeller,
+      activateDelivery,
+      hasRole,
+      hasAnyRole,
+      hasAllRoles,
     ]
   )
 
