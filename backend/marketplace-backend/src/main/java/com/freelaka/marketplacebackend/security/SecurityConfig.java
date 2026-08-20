@@ -168,6 +168,14 @@ public class SecurityConfig {
                         ).permitAll()
 
                         /*
+                         * Endpoints d'administration : réservés
+                         * strictement au rôle ADMIN.
+                         */
+                        .requestMatchers(
+                                "/api/admin/**"
+                        ).hasAuthority("ROLE_ADMIN")
+
+                        /*
                          * Tous les autres endpoints nécessitent
                          * une authentification JWT.
                          */
