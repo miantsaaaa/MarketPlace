@@ -137,6 +137,42 @@ const en = {
     malagasySoon: 'Malagasy — Coming soon',
     current: 'Current language',
   },
+
+  profile: {
+    title: 'My Profile',
+    subtitle: 'Manage your personal information and roles',
+    personalInfo: 'Personal Information',
+    email: 'Email Address',
+    status: 'Account Status',
+    roles: 'Current Roles',
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    phone: 'Phone',
+    saveChanges: 'Save Changes',
+    saving: 'Saving...',
+    updateSuccess: 'Profile updated successfully.',
+    rolesSection: 'Roles Activation',
+    sellerRoleTitle: 'Seller Role (SELLER)',
+    sellerRoleDesc: 'Offer and sell your products or services on the platform.',
+    deliveryRoleTitle: 'Delivery Role (DELIVERY)',
+    deliveryRoleDesc: 'Deliver orders to customers.',
+    activateSeller: 'Activate Seller Role',
+    activateDelivery: 'Activate Delivery Role',
+    activating: 'Activating...',
+    alreadyActive: 'Role already active',
+    roleSuccess: 'Role activated successfully!',
+    validation: {
+      firstNameRequired: 'First name is required.',
+      lastNameRequired: 'Last name is required.',
+      invalidPhone: 'Invalid phone number (e.g. +261340000000 or 0340000000).',
+    },
+    statusText: {
+      ACTIVE: 'Active',
+      INACTIVE: 'Inactive',
+      SUSPENDED: 'Suspended',
+      BANNED: 'Banned',
+    },
+  },
 } as const
 
 export default en

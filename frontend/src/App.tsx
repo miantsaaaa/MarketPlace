@@ -1,8 +1,4 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 
 import './App.css'
@@ -11,6 +7,8 @@ import MainLayout from './layouts/MainLayout'
 import CataloguePage from './pages/CataloguePage'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
+import { ProfilePage } from './pages/ProfilePage'
+import ProtectedRoute from './routes/ProtectedRoute'
 import ErrorBoundary from './components/ErrorBoundary'
 import './components/catalogue.css'
 
@@ -22,17 +20,12 @@ import {
 } from './i18n'
 
 function getInitialLanguage(): SupportedLanguage {
-  const params = new URLSearchParams(
-    window.location.search
-  )
-
+  const params = new URLSearchParams(window.location.search)
   const requestedLanguage = params.get('lang')
 
   if (
     requestedLanguage &&
-    AVAILABLE_LANGUAGES.includes(
-      requestedLanguage as SupportedLanguage
-    )
+    AVAILABLE_LANGUAGES.includes(requestedLanguage as SupportedLanguage)
   ) {
     return requestedLanguage as SupportedLanguage
   }
@@ -41,32 +34,14 @@ function getInitialLanguage(): SupportedLanguage {
 }
 
 function App() {
-  const [language, setLanguage] =
-    useState<SupportedLanguage>(
-      getInitialLanguage
-    )
-
+  const [language, setLanguage] = useState<SupportedLanguage>(getInitialLanguage)
   const t = getTranslations(language)
 
-  const changeLanguage = (
-    newLanguage: SupportedLanguage
-  ) => {
+  const changeLanguage = (newLanguage: SupportedLanguage) => {
     setLanguage(newLanguage)
-
-    const url = new URL(
-      window.location.href
-    )
-
-    url.searchParams.set(
-      'lang',
-      newLanguage
-    )
-
-    window.history.replaceState(
-      {},
-      '',
-      url
-    )
+    const url = new URL(window.location.href)
+    url.searchParams.set('lang', newLanguage)
+    window.history.replaceState({}, '', url)
   }
 
   return (
@@ -77,27 +52,20 @@ function App() {
             element={
               <MainLayout
                 language={language}
-                onChangeLanguage={
-                  changeLanguage
-                }
+                onChangeLanguage={changeLanguage}
               />
             }
           >
             <Route
               path="/"
-              element={
-                <CataloguePage
-                  language={language}
-                />
-              }
+              element={<CataloguePage language={language} />}
             />
 
             <Route
               path="/produit/:slug"
               element={
                 <p>
-                  Page détail produit (à venir —
-                  Frontend 2)
+                  Page détail produit (à venir — Frontend 2)
                 </p>
               }
             />
@@ -106,8 +74,7 @@ function App() {
               path="/categories"
               element={
                 <p>
-                  Page catégories (à venir —
-                  Frontend 2)
+                  Page catégories (à venir — Frontend 2)
                 </p>
               }
             />
@@ -116,25 +83,25 @@ function App() {
               path="/shops"
               element={
                 <p>
-                  Page boutiques (à venir —
-                  Frontend 2)
+                  Page boutiques (à venir — Frontend 2)
                 </p>
               }
             />
 
             <Route
               path="/login"
-              element={
-                <LoginPage t={t} />
-              }
+              element={<LoginPage t={t} />}
             />
 
             <Route
               path="/register"
-              element={
-                <RegisterPage t={t} />
-              }
+              element={<RegisterPage t={t} />}
             />
+
+            {/* Route protégée avec Outlet */}
+            <Route element={<ProtectedRoute />}>
+              <Route path="/profile" element={<ProfilePage />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
