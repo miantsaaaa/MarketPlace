@@ -3,15 +3,20 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
+
 import { useState } from 'react'
 
 import './App.css'
 
 import MainLayout from './layouts/MainLayout'
 import CataloguePage from './pages/CataloguePage'
+
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
+import ProfilePage from './pages/ProfilePage'
+
 import { ForbiddenPage } from './pages/ForbiddenPage'
+
 import ErrorBoundary from './components/ErrorBoundary'
 import ProtectedRoute from './routes/ProtectedRoute'
 
@@ -29,7 +34,8 @@ function getInitialLanguage(): SupportedLanguage {
     window.location.search
   )
 
-  const requestedLanguage = params.get('lang')
+  const requestedLanguage =
+    params.get('lang')
 
   if (
     requestedLanguage &&
@@ -99,8 +105,8 @@ function App() {
               path="/produit/:slug"
               element={
                 <p>
-                  Page détail produit (à venir —
-                  Frontend 2)
+                  Page détail produit
+                  (à venir — Frontend 2)
                 </p>
               }
             />
@@ -109,8 +115,8 @@ function App() {
               path="/categories"
               element={
                 <p>
-                  Page catégories (à venir —
-                  Frontend 2)
+                  Page catégories
+                  (à venir — Frontend 2)
                 </p>
               }
             />
@@ -119,8 +125,8 @@ function App() {
               path="/shops"
               element={
                 <p>
-                  Page boutiques (à venir —
-                  Frontend 2)
+                  Page boutiques
+                  (à venir — Frontend 2)
                 </p>
               }
             />
@@ -146,7 +152,21 @@ function App() {
               }
             />
 
-            <Route element={<ProtectedRoute />}>
+            {/* Toute personne authentifiée */}
+            <Route
+              element={
+                <ProtectedRoute />
+              }
+            >
+              <Route
+                path="/profile"
+                element={
+                  <ProfilePage
+                    language={language}
+                  />
+                }
+              />
+
               <Route
                 path="/private"
                 element={
@@ -157,13 +177,15 @@ function App() {
 
                     <p>
                       Accessible à tout
-                      utilisateur authentifié.
+                      utilisateur
+                      authentifié.
                     </p>
                   </div>
                 }
               />
             </Route>
 
+            {/* ADMIN */}
             <Route
               element={
                 <ProtectedRoute
@@ -188,6 +210,7 @@ function App() {
               />
             </Route>
 
+            {/* SELLER */}
             <Route
               element={
                 <ProtectedRoute
@@ -205,14 +228,15 @@ function App() {
 
                     <p>
                       Accessible aux
-                      utilisateurs ayant le
-                      rôle SELLER.
+                      utilisateurs ayant
+                      le rôle SELLER.
                     </p>
                   </div>
                 }
               />
             </Route>
 
+            {/* DELIVERY */}
             <Route
               element={
                 <ProtectedRoute
@@ -230,14 +254,15 @@ function App() {
 
                     <p>
                       Accessible aux
-                      utilisateurs ayant le
-                      rôle DELIVERY.
+                      utilisateurs ayant
+                      le rôle DELIVERY.
                     </p>
                   </div>
                 }
               />
             </Route>
 
+            {/* SUPPORT */}
             <Route
               element={
                 <ProtectedRoute
@@ -255,8 +280,8 @@ function App() {
 
                     <p>
                       Accessible aux
-                      utilisateurs ayant le
-                      rôle SUPPORT.
+                      utilisateurs ayant
+                      le rôle SUPPORT.
                     </p>
                   </div>
                 }

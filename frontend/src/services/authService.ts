@@ -19,6 +19,12 @@ const SELLER_ROLE_ENDPOINT =
 const DELIVERY_ROLE_ENDPOINT =
   '/api/users/me/roles/delivery'
 
+export interface UpdateCurrentUserRequest {
+  firstName: string
+  lastName: string
+  phone?: string
+}
+
 export function login(
   request: LoginRequest
 ): Promise<AuthResponse> {
@@ -48,6 +54,21 @@ export function register(
 export function getCurrentUser(): Promise<AuthUser> {
   return apiClient.get<AuthUser>(
     USERS_ME_ENDPOINT
+  )
+}
+
+export function updateCurrentUser(
+  request: UpdateCurrentUserRequest
+): Promise<AuthUser> {
+  const payload = {
+    firstName: request.firstName.trim(),
+    lastName: request.lastName.trim(),
+    phone: request.phone?.trim() || undefined,
+  }
+
+  return apiClient.put<AuthUser>(
+    USERS_ME_ENDPOINT,
+    payload
   )
 }
 

@@ -37,8 +37,10 @@ const fr = {
     subtitle: 'Découvrez nos produits',
     allProducts: 'Tous les produits',
     noProducts: 'Aucun produit trouvé.',
-    noProductsForSearch: 'Aucun produit ne correspond à votre recherche.',
-    noProductsForCategory: 'Aucun produit dans cette catégorie.',
+    noProductsForSearch:
+      'Aucun produit ne correspond à votre recherche.',
+    noProductsForCategory:
+      'Aucun produit dans cette catégorie.',
     filters: 'Filtres',
     clearFilters: 'Effacer les filtres',
     minPrice: 'Prix minimum',
@@ -59,7 +61,8 @@ const fr = {
   shop: {
     details: 'Détail de la boutique',
     products: 'Produits de la boutique',
-    noProducts: 'Cette boutique ne propose aucun produit.',
+    noProducts:
+      'Cette boutique ne propose aucun produit.',
     pending: 'En attente',
     active: 'Active',
     suspended: 'Suspendue',
@@ -68,67 +71,139 @@ const fr = {
 
   category: {
     title: 'Catégories',
-    noCategories: 'Aucune catégorie disponible.',
+    noCategories:
+      'Aucune catégorie disponible.',
   },
 
   auth: {
-      login: 'Connexion',
-      logout: 'Déconnexion',
-      register: 'Inscription',
-      guest: 'Visiteur',
-      connectedUser: 'Utilisateur connecté',
-      loginRequired: 'Connexion requise',
-      loginRequiredMessage:
-        'Vous devez être connecté pour utiliser cette fonctionnalité.',
-      loginOrRegister: 'Connectez-vous ou inscrivez-vous pour continuer.',
-      loginTitle: 'Se connecter à votre compte',
-      registerTitle: 'Créer un nouveau compte',
-      emailLabel: 'Adresse email',
-      emailPlaceholder: 'exemple@domaine.com',
-      passwordLabel: 'Mot de passe',
-      passwordPlaceholder: '••••••••',
-      confirmPasswordLabel: 'Confirmer le mot de passe',
-      firstNameLabel: 'Prénom',
-      firstNamePlaceholder: 'John',
-      lastNameLabel: 'Nom',
-      lastNamePlaceholder: 'Doe',
-      phoneLabel: 'Numéro de téléphone',
-      phonePlaceholder: '+261 34 00 000 00',
-      noAccount: 'Vous n\'avez pas encore de compte ?',
-      alreadyAccount: 'Vous avez déjà un compte ?',
-      loginSubmit: 'Se connecter',
-      registerSubmit: 'S\'inscrire',
-      submitting: 'Veuillez patienter...',
-      showPassword: 'Afficher le mot de passe',
-      hidePassword: 'Masquer le mot de passe',
-      errors: {
-        emailRequired: 'L\'adresse email est requise.',
-        emailInvalid: 'L\'adresse email n\'est pas valide.',
-        passwordRequired: 'Le mot de passe est requis.',
-        passwordTooShort: 'Le mot de passe doit contenir au moins 8 caractères.',
-        confirmPasswordRequired: 'La confirmation du mot de passe est requise.',
-        passwordsDoNotMatch: 'Les mots de passe ne correspondent pas.',
-        firstNameRequired: 'Le prénom est requis.',
-        lastNameRequired: 'Le nom est requis.',
-        phoneRequired: 'Le numéro de téléphone est requis.',
-        phoneInvalid: 'Le numéro de téléphone n\'est pas valide.',
-        loginFailed: 'Email ou mot de passe incorrect.',
-        registerFailed: 'L\'inscription a échoué. Veuillez réessayer.',
-      },
+    login: 'Connexion',
+    logout: 'Déconnexion',
+    register: 'Inscription',
+    guest: 'Visiteur',
+    connectedUser: 'Utilisateur connecté',
+    loginRequired: 'Connexion requise',
+    loginRequiredMessage:
+      'Vous devez être connecté pour utiliser cette fonctionnalité.',
+    loginOrRegister:
+      'Connectez-vous ou inscrivez-vous pour continuer.',
+    loginTitle: 'Se connecter à votre compte',
+    registerTitle: 'Créer un nouveau compte',
+    emailLabel: 'Adresse email',
+    emailPlaceholder: 'exemple@domaine.com',
+    passwordLabel: 'Mot de passe',
+    passwordPlaceholder: '••••••••',
+    confirmPasswordLabel:
+      'Confirmer le mot de passe',
+    firstNameLabel: 'Prénom',
+    firstNamePlaceholder: 'John',
+    lastNameLabel: 'Nom',
+    lastNamePlaceholder: 'Doe',
+    phoneLabel: 'Numéro de téléphone',
+    phonePlaceholder: '+261 34 00 000 00',
+    noAccount:
+      "Vous n'avez pas encore de compte ?",
+    alreadyAccount:
+      'Vous avez déjà un compte ?',
+    loginSubmit: 'Se connecter',
+    registerSubmit: "S'inscrire",
+    submitting: 'Veuillez patienter...',
+    showPassword: 'Afficher le mot de passe',
+    hidePassword: 'Masquer le mot de passe',
+
+    errors: {
+      emailRequired:
+        "L'adresse email est requise.",
+      emailInvalid:
+        "L'adresse email n'est pas valide.",
+      passwordRequired:
+        'Le mot de passe est requis.',
+      passwordTooShort:
+        'Le mot de passe doit contenir au moins 8 caractères.',
+      confirmPasswordRequired:
+        'La confirmation du mot de passe est requise.',
+      passwordsDoNotMatch:
+        'Les mots de passe ne correspondent pas.',
+      firstNameRequired:
+        'Le prénom est requis.',
+      lastNameRequired:
+        'Le nom est requis.',
+      phoneRequired:
+        'Le numéro de téléphone est requis.',
+      phoneInvalid:
+        "Le numéro de téléphone n'est pas valide.",
+      loginFailed:
+        'Email ou mot de passe incorrect.',
+      registerFailed:
+        "L'inscription a échoué. Veuillez réessayer.",
     },
+  },
+
+  profile: {
+    title: 'Mon profil',
+    subtitle:
+      'Consultez et gérez vos informations personnelles et vos rôles.',
+    personalInfo: 'Informations personnelles',
+    email: 'Adresse email',
+    status: 'Statut',
+    roles: 'Rôles',
+    firstName: 'Prénom',
+    lastName: 'Nom',
+    phone: 'Numéro de téléphone',
+    saving: 'Enregistrement...',
+    saveChanges: 'Enregistrer les modifications',
+    updateSuccess:
+      'Votre profil a été mis à jour avec succès.',
+    roleSuccess:
+      'Votre rôle a été activé avec succès.',
+
+statusText: {
+  PENDING: 'En attente',
+  ACTIVE: 'Actif',
+  INACTIVE: 'Inactif',
+  SUSPENDED: 'Suspendu',
+  CLOSED: 'Fermé',
+  BANNED: 'Banni',
+},
+
+    validation: {
+      firstNameRequired:
+        'Le prénom est requis.',
+      lastNameRequired:
+        'Le nom est requis.',
+      invalidPhone:
+        "Le numéro de téléphone n'est pas valide.",
+    },
+
+    rolesSection: 'Gestion des rôles',
+
+    sellerRoleTitle: 'Devenir vendeur',
+    sellerRoleDesc:
+      'Activez le rôle vendeur pour créer et gérer votre boutique ainsi que vos produits.',
+    activateSeller: 'Activer le rôle vendeur',
+
+    deliveryRoleTitle: 'Devenir livreur',
+    deliveryRoleDesc:
+      'Activez le rôle livreur pour effectuer des livraisons sur la marketplace.',
+    activateDelivery: 'Activer le rôle livreur',
+
+    alreadyActive: 'Déjà actif',
+    activating: 'Activation...',
+  },
 
   states: {
     loading: 'Chargement...',
     empty: 'Aucun résultat.',
     error: 'Une erreur est survenue.',
-    apiError: "Impossible de récupérer les données depuis l'API.",
+    apiError:
+      "Impossible de récupérer les données depuis l'API.",
   },
 
   features: {
     cart: 'Ajouter au panier',
     order: 'Commander',
     review: 'Laisser un avis',
-    requiresLogin: 'Cette fonctionnalité nécessite une connexion.',
+    requiresLogin:
+      'Cette fonctionnalité nécessite une connexion.',
   },
 
   language: {

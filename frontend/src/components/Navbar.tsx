@@ -58,8 +58,14 @@ function Navbar({ t, language, onChangeLanguage }: NavbarProps) {
 
       <div className="navbar-auth">
         {isAuthenticated && !isGuest ? (
-          <>
-            <span className="navbar-user">{user?.firstName}</span>
+          <><Link
+              to="/profile"
+              className="navbar-user"
+            >
+              {user?.firstName ||
+                user?.email ||
+                'Profil'}
+            </Link>
             <button type="button" onClick={logout}>
               {t.auth.logout ?? 'Déconnexion'}
             </button>

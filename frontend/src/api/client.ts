@@ -8,6 +8,9 @@ if (!API_BASE_URL) {
   )
 }
 
+const normalizedApiBaseUrl =
+  API_BASE_URL.replace(/\/+$/, '')
+
 function notifyUnauthorized(): void {
   window.dispatchEvent(
     new CustomEvent('marketplace-auth-unauthorized')
@@ -21,20 +24,10 @@ async function request<T>(
   const token = getStoredToken()
 
   const headers = new Headers(options?.headers)
-
-  /*
-   * Permet de supprimer la page d'avertissement
-   * ngrok lorsque celle-ci est affichée.
-   */
   headers.set(
     'ngrok-skip-browser-warning',
     'true'
   )
-
-  /*
-   * Les requêtes contenant un body JSON doivent
-   * indiquer explicitement leur Content-Type.
-   */
   if (
     options?.body !== undefined &&
     !headers.has('Content-Type')
@@ -55,8 +48,13 @@ async function request<T>(
     )
   }
 
+  const normalizedEndpoint =
+    endpoint.startsWith('/')
+      ? endpoint
+      : `/${endpoint}`
+
   const response = await fetch(
-    `${API_BASE_URL}${endpoint}`,
+    `${normalizedApiBaseUrl}${normalizedEndpoint}`,
     {
       ...options,
       headers,
@@ -113,7 +111,6 @@ async function request<T>(
 }
 
 export const apiClient = {
-
   get<T>(
     endpoint: string
   ): Promise<T> {
